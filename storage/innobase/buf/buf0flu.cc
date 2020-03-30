@@ -1089,6 +1089,7 @@ buf_flush_write_block_low(
 		IORequest	request(type);
 
         /* mijin */
+#if 0
         if (bpage->id.space() == 17 /* Order-Line tablespace */
                 && page_is_leaf(((buf_block_t *)bpage)->frame) /* Leaf page */) {
             /* Get the offset of HEAP_TOP */
@@ -1107,6 +1108,7 @@ buf_flush_write_block_low(
                 << ") with free space " << free_space << " / " << UNIV_PAGE_SIZE
                 << " (" << used_ratio << " )";
         }
+#endif
         /* end */
 
 		fil_io(request,
