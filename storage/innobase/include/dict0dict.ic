@@ -1424,8 +1424,11 @@ ulint
 dict_index_get_space_reserve(void)
 /*==============================*/
 {
-	return(UNIV_PAGE_SIZE / 3 * 20);
-	//return(UNIV_PAGE_SIZE / 16);
+    /* mijin */
+	/* Reserve more free space (1 / 16 to 3 / 20) */
+    return(UNIV_PAGE_SIZE * 3 / 20);
+	/* end */
+    //return(UNIV_PAGE_SIZE / 16);
 }
 
 /********************************************************************//**

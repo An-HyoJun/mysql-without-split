@@ -142,7 +142,10 @@ PageBulk::init()
 		m_reserved_space = dict_index_get_space_reserve();
 	} else {
 		m_reserved_space =
-			UNIV_PAGE_SIZE * (100 - innobase_fill_factor) / 100;
+            /* mijin */
+            UNIV_PAGE_SIZE * 3 / 20;
+			/* end */
+            //UNIV_PAGE_SIZE * (100 - innobase_fill_factor) / 100;
 	}
 
 	m_padding_space =
