@@ -1,5 +1,4 @@
-# Page Utilization을 확인하기 위한 MySQL
+# MySQL without Page Split
 
 - MySQL 5.7.24
-- buf/buf0flu.cc 수정
-  - 현재 Order-Line leaf page에 대해서만 page utilization log print
+- TPC-C Order-Line 페이지들의 split을 막기 위해, 페이지의 free space 크기를 증가시킴
