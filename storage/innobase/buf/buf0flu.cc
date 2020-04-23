@@ -1088,29 +1088,6 @@ buf_flush_write_block_low(
 
 		IORequest	request(type);
 
-        /* mijin */
-#if 0
-        if (bpage->id.space() == 17 /* Order-Line tablespace */
-                && page_is_leaf(((buf_block_t *)bpage)->frame) /* Leaf page */) {
-            /* Get the offset of HEAP_TOP */
-            ulint heap_top_off = page_header_get_offs(((buf_block_t *)bpage)->frame, PAGE_HEAP_TOP);
-
-            /* Get the offset of the end point of the page directory */
-            ulint total_n_recs = page_get_n_recs(((buf_block_t *)bpage)->frame) + 1;
-            ulint page_dir_off = page_dir_calc_reserved_space(total_n_recs);
-
-            /* Calculate the free space and the space utilization ratio */
-            ulint free_space = UNIV_PAGE_SIZE - heap_top_off - page_dir_off - 8;
-            float used_ratio = (float)1 - ((float)free_space / (float)UNIV_PAGE_SIZE);
-
-            /* Print the result */
-            ib::info() << "(" << bpage->id.space() << ", " << bpage->id.page_no()
-                << ") with free space " << free_space << " / " << UNIV_PAGE_SIZE
-                << " (" << used_ratio << " )";
-        }
-#endif
-        /* end */
-
 		fil_io(request,
 		       sync, bpage->id, bpage->size, 0, bpage->size.physical(),
 		       frame, bpage);

@@ -1322,6 +1322,7 @@ after_insert:
 
 	ut_ad(!rec || rec_offs_validate(rec, cursor->index, *offsets));
 #endif
+
 	MONITOR_INC(MONITOR_INDEX_SPLIT);
 
 	return(rec);

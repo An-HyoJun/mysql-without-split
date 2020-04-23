@@ -2582,6 +2582,19 @@ func_start:
 		return(rec);
 	}
 
+	/* mijin */
+	/*if (block->page.id.space() == 30) {
+		ib::info() << "Split (" << rec_get_converted_size(cursor->index, tuple, n_ext)
+			<< ") : original = " << block->page.id.page_no()
+			<< " / " << page_get_n_recs(page)
+			<< " / " << page_is_root(page)
+			<< " / " << page_is_leaf(page)
+			<< " / " << dict_index_is_clust(cursor->index)
+			<< " / " << dict_index_is_unique(cursor->index)
+			<< " / " << cursor->index->name;
+	}
+	*//* end */
+
 	page_no = block->page.id.page_no();
 
 	/* 1. Decide the split record; split_rec == NULL means that the
@@ -2834,7 +2847,6 @@ insert_empty:
 
 	rec = page_cur_tuple_insert(page_cursor, tuple, cursor->index,
 				    offsets, heap, n_ext, mtr);
-
 #ifdef UNIV_ZIP_DEBUG
 	{
 		page_t*		insert_page
@@ -2897,6 +2909,21 @@ func_exit:
 		ibuf_update_free_bits_for_two_pages_low(
 			left_block, right_block, mtr);
 	}
+
+	/* mijin */
+	/*if (block->page.id.space() == 30) {
+		ib::info() << "Split (" << rec_get_converted_size(cursor->index, tuple, n_ext)
+			<< ") : original = " << block->page.id.page_no()
+			<< " / " << page_get_n_recs(page)
+			<< " / " << page_is_root(page)
+			<< " / " << page_is_leaf(page)
+			<< " / " << dict_index_is_ibuf(cursor->index)
+			<< " , new = " << new_block->page.id.page_no()
+			<< " / " << page_get_n_recs(new_page)
+			<< " / " << page_is_root(new_page)
+			<< " / " << page_is_leaf(new_page);
+	}
+	*//* end */
 
 	MONITOR_INC(MONITOR_INDEX_SPLIT);
 

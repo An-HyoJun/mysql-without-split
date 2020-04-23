@@ -1424,12 +1424,22 @@ ulint
 dict_index_get_space_reserve(void)
 /*==============================*/
 {
-    /* mijin */
-	/* Reserve more free space (1 / 16 to 3 / 20) */
-    return(UNIV_PAGE_SIZE * 3 / 20);
-	/* end */
-    //return(UNIV_PAGE_SIZE / 16);
+	return (UNIV_PAGE_SIZE / 16);
 }
+/** lbh: Check if tablespace name is "innodb_general".
+@param[in]	tablespace_name	tablespace name
+@retval		true		if name is "innodb_general"
+@retval		false		if name is not "innodb_general" 
+inline
+bool
+dict_table_has_temp_general_tablespace_name(
+	const char*	tablespace_name) {
+
+	return(tablespace_name != NULL
+	       && strncmp(tablespace_name, general_space_name,
+			  strlen(general_space_name)) == 0);
+}*/
+
 
 /********************************************************************//**
 Gets the status of online index creation.

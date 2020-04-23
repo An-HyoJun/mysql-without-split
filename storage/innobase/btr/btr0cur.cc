@@ -3172,13 +3172,25 @@ fail_err:
 	we have to split the page to reserve enough free space for
 	future updates of records. */
 
-	if (leaf && !page_size.is_compressed() && dict_index_is_clust(index)
-	    && page_get_n_recs(page) >= 2
-	    && dict_index_get_space_reserve() + rec_size > max_size
-	    && (btr_page_get_split_rec_to_right(cursor, &dummy)
-		|| btr_page_get_split_rec_to_left(cursor, &dummy))) {
-		goto fail;
+	/* mijin */
+	if (index->space == 30) {
+		if (leaf && !page_size.is_compressed() && dict_index_is_clust(index)
+		    && page_get_n_recs(page) >= 2
+		    && (UNIV_PAGE_SIZE * 3 / 20) + rec_size > max_size
+		    && (btr_page_get_split_rec_to_right(cursor, &dummy)
+			|| btr_page_get_split_rec_to_left(cursor, &dummy))) {
+			goto fail;
+		}
+	} else {
+		if (leaf && !page_size.is_compressed() && dict_index_is_clust(index)
+		    && page_get_n_recs(page) >= 2
+		    && dict_index_get_space_reserve() + rec_size > max_size
+		    && (btr_page_get_split_rec_to_right(cursor, &dummy)
+			|| btr_page_get_split_rec_to_left(cursor, &dummy))) {
+			goto fail;
+		}
 	}
+	/* end */
 
 	page_cursor = btr_cur_get_page_cur(cursor);
 
