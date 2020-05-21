@@ -48,6 +48,10 @@ Created 6/2/1994 Heikki Tuuri
 #include "ut0new.h"
 #include "dict0boot.h"
 
+/* mijin */
+#include "srv0srv.h"
+/* end */
+
 /**************************************************************//**
 Checks if the page in the cursor can be merged with given page.
 If necessary, re-organize the merge_page.

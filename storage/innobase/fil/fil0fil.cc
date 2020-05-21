@@ -55,6 +55,10 @@ Created 10/25/1995 Heikki Tuuri
 #include "btr0sea.h"
 #include "log0log.h"
 
+/* mijin */
+#include "srv0srv.h"
+/* end */
+
 /** Tries to close a file in the LRU list. The caller must hold the fil_sys
 mutex.
 @return true if success, false if should retry later; since i/o's

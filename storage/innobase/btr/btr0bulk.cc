@@ -29,6 +29,10 @@ Created 03/11/2014 Shaohua Wang
 #include "btr0pcur.h"
 #include "ibuf0ibuf.h"
 
+/* mijin */
+#include "srv0srv.h"
+/* end */
+
 /** Innodb B-tree index fill factor for bulk load. */
 long	innobase_fill_factor;
 
