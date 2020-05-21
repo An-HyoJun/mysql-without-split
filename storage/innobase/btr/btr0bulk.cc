@@ -138,8 +138,8 @@ PageBulk::init()
 	m_free_space = page_get_free_space_of_empty(m_is_comp);
 
 	/* mijin */
-	if (m_index->space == 30) {
-		m_reserved_space = UNIV_PAGE_SIZE * 3 / 20;
+	if (m_index->space == srv_ol_space_id) {
+		m_reserved_space = UNIV_PAGE_SIZE /10;
 	} else {
 		if (innobase_fill_factor == 100 && dict_index_is_clust(m_index)) {
 			/* Keep default behavior compatible with 5.6 */

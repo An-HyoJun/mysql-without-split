@@ -907,6 +907,10 @@ add_size:
 	}
 
 	/* mijin */
+	if (strcmp(node->name, "./tpcc1000/order_line.ibd") == 0) {
+		srv_ol_space_id = space->id;
+		fprintf(stderr, "setting %s to %lu\n", node->name, srv_ol_space_id);
+	}
 	fprintf(stderr, "%s = %lu\n", node->name, space->id);
 	/* end */
 

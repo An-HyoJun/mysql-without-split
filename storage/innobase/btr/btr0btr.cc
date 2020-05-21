@@ -2583,7 +2583,7 @@ func_start:
 	}
 
 	/* mijin */
-	/*if (block->page.id.space() == 30) {
+	if (block->page.id.space() == srv_ol_space_id) {
 		ib::info() << "Split (" << rec_get_converted_size(cursor->index, tuple, n_ext)
 			<< ") : original = " << block->page.id.page_no()
 			<< " / " << page_get_n_recs(page)
@@ -2593,7 +2593,7 @@ func_start:
 			<< " / " << dict_index_is_unique(cursor->index)
 			<< " / " << cursor->index->name;
 	}
-	*//* end */
+	/* end */
 
 	page_no = block->page.id.page_no();
 
@@ -2911,7 +2911,7 @@ func_exit:
 	}
 
 	/* mijin */
-	/*if (block->page.id.space() == 30) {
+	if (block->page.id.space() == srv_ol_space_id) {
 		ib::info() << "Split (" << rec_get_converted_size(cursor->index, tuple, n_ext)
 			<< ") : original = " << block->page.id.page_no()
 			<< " / " << page_get_n_recs(page)
@@ -2923,7 +2923,7 @@ func_exit:
 			<< " / " << page_is_root(new_page)
 			<< " / " << page_is_leaf(new_page);
 	}
-	*//* end */
+	/* end */
 
 	MONITOR_INC(MONITOR_INDEX_SPLIT);
 

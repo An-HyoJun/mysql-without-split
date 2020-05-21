@@ -3173,10 +3173,10 @@ fail_err:
 	future updates of records. */
 
 	/* mijin */
-	if (index->space == 30) {
+	if (index->space == srv_ol_space_id) {
 		if (leaf && !page_size.is_compressed() && dict_index_is_clust(index)
 		    && page_get_n_recs(page) >= 2
-		    && (UNIV_PAGE_SIZE * 3 / 20) + rec_size > max_size
+		    && (UNIV_PAGE_SIZE /10) + rec_size > max_size
 		    && (btr_page_get_split_rec_to_right(cursor, &dummy)
 			|| btr_page_get_split_rec_to_left(cursor, &dummy))) {
 			goto fail;
